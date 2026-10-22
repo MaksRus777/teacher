@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Точка входа #1 -->
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- Подключение папки "static" -->
+    {% load static %}
+
+    <!-- Подключение своего CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+<h2>Мой первый Веб-сайт !!!</h2>
+
+<!-- Точка входа #2 -->
+{% block body %}{% endblock body %}
+
+</body>
+</html>

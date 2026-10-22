@@ -1,0 +1,56 @@
+<!-- Подключение базового шаблона -->
+{% extends "base.html" %}
+
+<!-- Подключение папки "static" -->
+{% load static %}
+
+<!-- Вставка в точку #1 -->
+{% block title %}
+    Контакты
+{% endblock title %}
+
+<!-- Вставка в точку #2 -->
+{% block body %}
+    <h3>Страница Контакты</h3>
+
+    <!-- Вставка картинки (Чужая) -->
+    <img width="30%" src="https://www.imagecms.net/wp-content/uploads/images/contact2.jpg">
+
+    <!-- Вставка картинки (Своя из static) -->
+    <img width="30%" src="{% static 'contact.jpg' %}">
+
+    <!-- Вставка текст -->
+    <p><b>Имя:</b> {{ NAME }}</p>
+    <p><b>Номер:</b> {{ NUMBER }}</p>
+    <p><b>Время:</b> {{ TIME }}</p>
+    <p><b>Email:</b> <span class="red">info@mysity.com</span></p>
+
+    <!-- Вывод имен через "for" в виде списка "ul" -->
+    <p class="red"><b>Главные редакторы:</b></p>
+    <ul>
+    {% for name in NAMES %}
+        <li>{{ name }}</li>
+    {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Шаблонизатор Jinja2 и его Теги</h3>
+    <p><b>Переменная (python): </b>{{ AGE }} (Возраст)</p>
+    <p><b>Дата: </b>{% now "d.m.Y H:i:s (Месяц: F) (День недели: l)" %}</p>
+    <p><b>Условия: </b>{% if AGE >= 18 %} Взрослый {% else %} Молод {% endif %}</p>
+    <p><b>Цикл: </b>{% for i in lst %} {{ i }} {% empty %} Списка нет или он пуст! {% endfor %} </p>
+    <p><b>Переменная (шаблона): </b>{% with name="Дмитрий" number="+375(29)223-34-44" %} {{ name }} : {{ number }} {% endwith %}</p>
+
+{% endblock body %}
+
+
+<!--
+[Одна страница (как происходит открытие на сервере)]
+Принцип:
+Маршрут 1 шт. - http://127.0.0.1:8000/contact
+->
+Логика 1 шт. - def contact()
+->
+Шаблон 2 шт. - contact.html(главный|мало HTML кода) + base.html(базовый|много HTML кода)
+-->
